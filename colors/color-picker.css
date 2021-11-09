@@ -51,3 +51,8 @@
 .color-transparancy {
   fill-opacity: 0.50;
 }
+
+.djs-popup-body .entry img {
+  width: 22px;
+  height: 22px;
+}

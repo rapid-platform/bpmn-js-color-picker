@@ -1,11 +1,14 @@
 import ColorContextPadProvider from './ColorContextPadProvider';
 import ColorPopupProvider from './ColorPopupProvider';
+import AlignDistributePopupProvider from './AlignDistributePopupProvider';
 
 export default {
   __init__: [
     'colorContextPadProvider',
-    'colorPopupProvider'
+    'colorPopupProvider',
+    'alignDistributePopupProvider'
   ],
   colorContextPadProvider: [ 'type', ColorContextPadProvider ],
-  colorPopupProvider: [ 'type', ColorPopupProvider ]
+  colorPopupProvider: [ 'type', ColorPopupProvider ],
+  alignDistributePopupProvider: [ 'type', AlignDistributePopupProvider ]
 };
