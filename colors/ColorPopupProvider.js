@@ -1,4 +1,4 @@
-export default function PopupMenuProvider(popupMenu, modeling) {
+export default function ColorPopupProvider(popupMenu, modeling) {
   this._popupMenu = popupMenu;
   this._modeling = modeling;
 
@@ -6,19 +6,19 @@ export default function PopupMenuProvider(popupMenu, modeling) {
 }
 
 
-PopupMenuProvider.$inject = [
+ColorPopupProvider.$inject = [
   'popupMenu',
   'modeling'
 ];
 
 
-PopupMenuProvider.prototype.getEntries = function(element) {
+ColorPopupProvider.prototype.getEntries = function(element) {
   var self = this;
 
   var colors = [{
-    label: 'White',
-    fill: 'white',
-    stroke: 'black'
+    label: 'Default',
+    fill: undefined,
+    stroke: undefined
   }, {
     label: 'Blue',
     fill: '#BBDEFB',
@@ -43,7 +43,7 @@ PopupMenuProvider.prototype.getEntries = function(element) {
 
   var entries = colors.map(function(color) {
     return {
-      label: color.label,
+      title: color.label,
       id: color.label.toLowerCase() + '-color',
       className: 'color-icon-' + color.label.toLowerCase(),
       action: createAction(self._modeling, element, color)
@@ -53,17 +53,6 @@ PopupMenuProvider.prototype.getEntries = function(element) {
   return entries;
 };
 
-
-PopupMenuProvider.prototype.getHeaderEntries = function(element) {
-  return [
-    {
-      label: 'Clear',
-      id: 'clear-color',
-      className: 'color-icon-clear',
-      action: createAction(this._modeling, element)
-    }
-  ];
-};
 
 function createAction(modeling, element, color) {
   return function() {

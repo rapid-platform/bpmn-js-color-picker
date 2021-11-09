@@ -1,3 +1,10 @@
+const colorImageSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048">' +
+  '<path d="M1716 28l-430 431-117 117-214-61-222-62-4 4-179 179 428 428 428 428 179-179v-1l4-3-62-222-56-197 123-123 430-430-308-309zM423 765L24 1163l428 428 428 429 399-399-428-428-428-428z"/>' +
+'</svg>';
+
+const colorImageUrl = 'data:image/svg+xml;utf8,' + encodeURIComponent(colorImageSvg);
+
+
 export default function ColorContextPadProvider(contextPad, popupMenu, canvas) {
 
   this._contextPad = contextPad;
@@ -21,7 +28,7 @@ ColorContextPadProvider.prototype.getContextPadEntries = function(element) {
   var actions = {
     'set-color': {
       group: 'edit',
-      className: 'bpmn-icon-color',
+      imageUrl: colorImageUrl,
       title: 'Set Color',
       action: {
         click: function(event, element) {
