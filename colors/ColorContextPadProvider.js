@@ -4,7 +4,6 @@ const colorImageSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048
 
 const colorImageUrl = 'data:image/svg+xml;utf8,' + encodeURIComponent(colorImageSvg);
 
-
 export default function ColorContextPadProvider(contextPad, popupMenu, canvas) {
 
   this._contextPad = contextPad;
@@ -52,6 +51,37 @@ ColorContextPadProvider.prototype.getContextPadEntries = function(element) {
   return actions;
 };
 
+
+
+ColorContextPadProvider.prototype.getMultiElementContextPadEntries = function(elements) {
+  var self = this;
+
+  var actions = {
+    'set-color': {
+      group: 'edit',
+      imageUrl: colorImageUrl,
+      title: 'Set Color',
+      action: {
+        click: function(event, element) {
+
+          // get start popup draw start position
+          var position = {
+            ...getStartPosition(self._canvas, self._contextPad, element),
+            cursor: {
+              x: event.x,
+              y: event.y
+            }
+          };
+
+          // open new color-picker popup
+          self._popupMenu.open(elements, 'color-picker', position);
+        }
+      },
+    }
+  };
+
+  return actions;
+};
 
 // helpers //////////////////////
 
